@@ -34,8 +34,7 @@ banner() {
     echo "      █████▒▒ PHISHER-STYLE SITES CLONE ▒▒█████
     
     
-    Feedback And Tell Which Phishing Sites You want
-         Contact Whatsapp 977+ = 9826826667
+    Feedback And Tell Which Phishing Sites You want         
            Contact Instagram = @Shyam.npl1 "
     echo -e "${NC}"
 }
