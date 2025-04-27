@@ -7,7 +7,8 @@ Fixed Unable To Generate Url Try After Turning On Hotspot
 Clone Fake Websites & Share Cloudflare URL 
 
 
-  - Free & Easy to Use                        
+  - Free & Easy to Use
+  - No Root Required    
  - Hotspot Not Required (Cloudflare Fixed)   
   - More Updates & New Phishing Sites Coming  
     
