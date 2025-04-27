@@ -2,7 +2,7 @@
 #                                             #
 #      A-zPhisher V1.1 - Cloudflare Fixed      #
 #                                             #
-#   Fixed Unable To Generate Url Try After Turning On Hotsport  #
+#   Fixed Unable To Generate Url Try After Turning On Hotspot #
 #                                             #
 #   Clone Fake Websites & Share Cloudflare URL #
 #                                             #
@@ -21,32 +21,15 @@
 #                                             #
 ###############################################
 
+---
 
+# Installation Commands
+
+Follow these commands one-by-one to install **A-zPhisher** in Termux.
+
+> **Supported Terminals**: Termux, Try Other Terminals
 
 ---
 
-# Installation Commands:
-
-Follow these commands one-by-one to install A-zPhisher: in Termux
-
-Supported Terminal
-Termux
-Try Other
-
 ```bash
-pkg update && pkg upgrade -y```
-
-```bash
-pkg install git```
-
-```bash
-git clone https://github.com/Shyamnpl/A-zPhisher.git```
-
-```bash
-cd A-zPhisher```
-
-```bash
-chmod +x A-zPhisher.sh```
-
-```bash
-bash A-zPhisher.sh```
+pkg update && pkg upgrade -y
