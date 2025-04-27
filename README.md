@@ -59,9 +59,9 @@ bash A-zPhisher.sh
 If You Getting This Error While Generating with Cloudflare Url👇👇
 
 
-Faild To Generate url Try 4-5 Times
+Error:- Faild To Generate url Try 4-5 Times.
 
-Then Try 4-5 Time Again And Again.
+Sollution:- 👉 Then Try 4-5 Time Again And Again.
 
 # Disclaimer
 
