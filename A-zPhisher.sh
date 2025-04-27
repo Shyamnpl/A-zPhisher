@@ -38,7 +38,8 @@ banner() {
                 "  ████▒▒ ${YELLOW2}V1.1${BRIGHT_CYAN} ▒▒████"
     
   Feedback And Tell Which Phishing Sites You want         
-             Instagram = @Shyam.npl1 "
+             Instagram = @Shyam.npl1 
+             Youtube = @FactStreamZS"
     echo -e "${NC}"
 }
 
