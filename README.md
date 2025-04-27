@@ -1,8 +1,6 @@
+#A-zPhisher V1.1 - Cloudflare Fixed      
 
-                                             
-     A-zPhisher V1.1 - Cloudflare Fixed      
-                                             
-   Fixed Unable To Generate Url Try After Turning On Hotspot 
+Fixed Unable To Generate Url Try After Turning On Hotspot 
                                                Clone Fake Websites & Share Cloudflare URL 
                                           
   - Free & Easy to Use                        
