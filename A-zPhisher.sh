@@ -132,7 +132,7 @@ start_cloudflared() {
         echo -e "${BRIGHT_GREEN}[✓] LIVE URL: ${BRIGHT_CYAN}$URL${NC}"
         capture_data
     else
-        echo -e "${RED}[!] Failed to fetch Cloudflare URL.${NC}"
+        echo -e "${RED}[!] Faild To Generate url Try 4-5 Times .${NC}"
     fi
 }
 
