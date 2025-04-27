@@ -8,3 +8,12 @@
 
 
 # If You Like My Work then Give Rating.
+
+
+
+
+```bash
+git clone https://github.com/yourname/yourproject.git
+cd yourproject
+bash setup.sh
+```
