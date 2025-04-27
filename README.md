@@ -55,3 +55,17 @@ chmod +x A-zPhisher.sh
 ```bash
 bash A-zPhisher.sh
 ```
+
+# Disclaimer
+
+> Warning:
+
+This tool (A-zPhisher) is created for educational and research purposes only.
+
+Unauthorized use of this tool against any individual, account, network, or system without explicit permission is strictly prohibited and may be illegal.
+
+The developer(s) and contributor(s) of this project are not responsible for any misuse or damage caused by this tool.
+
+By using A-zPhisher, you agree that you are responsible for your own actions and will use this tool only in ethical and lawful manners.
+
+> Respect Privacy - Stay Legal - Stay Safe.
