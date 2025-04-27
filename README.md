@@ -1,24 +1,23 @@
-###############################################
-#                                             #
-#      A-zPhisher V1.1 - Cloudflare Fixed      #
-#                                             #
-#   Fixed Unable To Generate Url Try After Turning On Hotspot #
-#                                             #
-#   Clone Fake Websites & Share Cloudflare URL #
-#                                             #
-#  - Free & Easy to Use                        #
-#  - Hotspot Not Required (Cloudflare Fixed)   #
-#  - More Updates & New Phishing Sites Coming  #
-#                                             #
-#  Youtube: FactStreamZS                       #
-#  Instagram: @FactStreamZS                    #
-#                                             #
-#  Subscribe and Support Us!                  #
-#  Youtube URL:                                #
-#  https://youtube.com/@factstreamzs?si=m4Kdx_rAm2O48YnC
-#                                             #
-#  If you like my work, please give a rating!  #
-#                                             #
+
+                                             
+     A-zPhisher V1.1 - Cloudflare Fixed      
+                                             
+   Fixed Unable To Generate Url Try After Turning On Hotspot 
+                                               Clone Fake Websites & Share Cloudflare URL 
+                                          
+  - Free & Easy to Use                        
+ - Hotspot Not Required (Cloudflare Fixed)   
+  - More Updates & New Phishing Sites Coming  
+    
+  Youtube: FactStreamZS                       
+ Instagram: @FactStreamZS                    
+                                         #
+  Subscribe and Support Us!                  
+  Youtube URL:                                
+  https://youtube.com/@factstreamzs?si=m4Kdx_rAm2O48YnC
+                                          
+ If you like my work, please give a rating!  
+                                          
 ###############################################
 
 ---
