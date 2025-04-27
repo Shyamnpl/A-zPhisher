@@ -1,19 +1,52 @@
+###############################################
+#                                             #
+#      A-zPhisher V1.1 - Cloudflare Fixed      #
+#                                             #
+#   Fixed Unable To Generate Url Try After Turning On Hotsport  #
+#                                             #
+#   Clone Fake Websites & Share Cloudflare URL #
+#                                             #
+#  - Free & Easy to Use                        #
+#  - Hotspot Not Required (Cloudflare Fixed)   #
+#  - More Updates & New Phishing Sites Coming  #
+#                                             #
+#  Youtube: FactStreamZS                       #
+#  Instagram: @FactStreamZS                    #
+#                                             #
+#  Subscribe and Support Us!                  #
+#  Youtube URL:                                #
+#  https://youtube.com/@factstreamzs?si=m4Kdx_rAm2O48YnC
+#                                             #
+#  If you like my work, please give a rating!  #
+#                                             #
+###############################################
 
-# A-zPhisher Fix Cloudflare Unable to Generate Link Try After Turning On Hotsport.
-# Free And Easy To Use My A-zPhisher V.1.1
-# Clone Your Fake Website And Share Cloudflare Url To Your Victim.
-# More Uodate and Phishing Website Clone Coming, Be Support.
-# subscribe My Youtube channel and support @FactStreamZS  Url:- https://youtube.com/@factstreamzs?si=m4Kdx_rAm2O48YnC
-# And Follow On Instagram To Contact.
 
 
-# If You Like My Work then Give Rating.
+---
 
+# Installation Commands:
 
+Follow these commands one-by-one to install A-zPhisher: in Termux
 
+Supported Terminal
+Termux
+Try Other
 
 ```bash
-git clone https://github.com/yourname/yourproject.git
-cd yourproject
-bash setup.sh
-```
+pkg update && pkg upgrade -y```
+
+```bash
+pkg install git```
+
+```bash
+git clone https://github.com/Shyamnpl/A-zPhisher.git```
+
+```bash
+cd A-zPhisher```
+
+```bash
+chmod +x A-zPhisher.sh```
+
+```bash
+bash A-zPhisher.sh```
