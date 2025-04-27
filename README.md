@@ -32,5 +32,25 @@ Follow these commands one-by-one to install **A-zPhisher** in Termux.
 ---
 
 ```bash
-pkg update && pkg upgrade -y `
-pkg install git ```
+pkg update && pkg upgrade -y
+```
+
+```bash
+pkg install git
+```
+
+```bash
+git clone https://github.com/Shyamnpl/A-zPhisher.git
+```
+
+```bash
+cd A-zPhisher
+```
+
+```bash
+chmod +x A-zPhisher.sh
+```
+
+```bash
+bash A-zPhisher.sh
+```
