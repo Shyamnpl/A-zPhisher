@@ -234,7 +234,7 @@ start_localhost() {
 }
 
 start_cloudflared() {
-    BITLY_API_KEY="b21642ce493e8139eb813daaeba111fd6ec305f1"
+    BITLY_API_KEY="ef268f2a6d35c286b6cad7de99de658e2d6f34f4"
     random_port
     echo -e "\n${BRIGHT_GREEN}[+] Launching Cloudflared tunnel on port $PORT...${NC}
     "
