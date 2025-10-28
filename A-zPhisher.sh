@@ -234,7 +234,7 @@ start_localhost() {
 }
 
 start_cloudflared() {
-    BITLY_API_KEY="ef268f2a6d35c286b6cad7de99de658e2d6f34f4" # Note: This public key might not work.
+    BITLY_API_KEY="b21642ce493e8139eb813daaeba111fd6ec305f1" # Note: This public key might not work.
     random_port
     echo -e "\n${BRIGHT_GREEN}[+] Launching Cloudflared tunnel on port $PORT...${NC}"
     
@@ -249,7 +249,7 @@ start_cloudflared() {
 
     # --- NEW RELIABLE LOGIC STARTS HERE ---
     
-    echo -e "${BRIGHT_YELLOW}[•] Waiting for Cloudflared URL... (Max 20 seconds)${NC}"
+    echo -e "${BRIGHT_YELLOW}[•] Waiting for Cloudflared URL... (Wait 20 seconds)${NC}"
     URL=""
     # Loop for 20 seconds, checking for the URL every second
     for i in {1..20}; do
